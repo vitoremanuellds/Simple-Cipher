@@ -2,13 +2,13 @@ def simple_cipher(text):
     
     def get_alphabet_number(letter):
         alphabet = "abcdefghijklmnopqrstuvwxyz0123456789"
-        if letter.isupper():
-            return (alphabet.find(letter.lower()) + 1, True)
-        return (alphabet.find(letter) + 1, False)
+        if letter.islower() or letter.isnumeric():
+            return (alphabet.find(letter), False)
+        return (alphabet.find(letter.lower()), True)
 
     def generate_new_letter(alphabet_number, previous_shift, is_upper):
         shift = (previous_shift + alphabet_number)
-        new_letter_index = ((shift) - 1) % 36
+        new_letter_index = (shift) % 36
         alphabet = "abcdefghijklmnopqrstuvwxyz0123456789"
 
         if is_upper:
